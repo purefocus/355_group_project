@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1034217279860",
+    "firebase_url": "https://groupproject-f8a4f.firebaseio.com",
+    "project_id": "groupproject-f8a4f",
+    "storage_bucket": "groupproject-f8a4f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034217279860:android:b1eb0144e98b067c",
+        "android_client_info": {
+          "package_name": "edu.vcu.cmsc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034217279860-6idb119ikn4b1dog7vjhuk5cackrkoo1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBveplzKhybUEsyNlHpjeC0IPH5AWR7C50"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
