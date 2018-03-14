@@ -1,3 +1,21 @@
 <resources>
-    <string name="app_name">355GroupProject</string>
+    <string name="app_name">Artifact Shit</string>
+
+    <string name="login.title">Login</string>
+    <string name="login.username">Username</string>
+    <string name="login.password">Password</string>
+    <string name="login.btn_login">Log in</string>
+    <string name="login.btn_register">Register</string>
+    <string name="login.label_register">Not a user?</string>
+    <string name="login.check_remember">Remember me</string>
+    <string name="register.title">Register</string>
+    <string name="register.fname">First Name</string>
+    <string name="register.email">Email</string>
+    <string name="register.username">Username</string>
+    <string name="register.password">Password</string>
+    <string name="register.confirm">Confirm</string>
+    <string name="register.lname">Last Name</string>
+    <string name="register.confpass">Confirm\nPassword</string>
+    <string name="register.register">Register</string>
+    <string name="register.default_msg">Please enter the following information</string>
 </resources>

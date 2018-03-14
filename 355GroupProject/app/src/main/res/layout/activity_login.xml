@@ -5,6 +5,105 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:label="@string/login.title"
     tools:context="edu.vcu.cmsc.LoginActivity">
 
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/field_login_username"
+            android:layout_width="0dp"
+            android:layout_height="47dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="@string/login.username"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/label_login_result"/>
+
+        <EditText
+            android:id="@+id/field_login_password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="@string/login.password"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="@+id/field_login_username"
+            app:layout_constraintStart_toStartOf="@+id/field_login_username"
+            app:layout_constraintTop_toBottomOf="@+id/field_login_username"/>
+
+        <Button
+            android:id="@+id/btn_login_login"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:onClick="btn_login"
+            android:text="@string/login.btn_login"
+            app:layout_constraintEnd_toEndOf="@+id/field_login_password"
+            app:layout_constraintStart_toStartOf="@+id/field_login_password"
+            app:layout_constraintTop_toBottomOf="@+id/field_login_password"/>
+
+        <Button
+            android:id="@+id/btn_login_register"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:onClick="btn_register"
+            android:text="@string/login.btn_register"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/btn_login_login"
+            app:layout_constraintStart_toStartOf="@+id/btn_login_login"
+            app:layout_constraintTop_toBottomOf="@+id/label_login_register"/>
+
+        <TextView
+            android:id="@+id/label_login_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="64dp"
+            android:text="@string/login.label_register"
+            app:layout_constraintStart_toStartOf="@+id/btn_login_register"
+            app:layout_constraintTop_toBottomOf="@+id/check_login_remember"/>
+
+        <CheckBox
+            android:id="@+id/check_login_remember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/login.check_remember"
+            app:layout_constraintStart_toStartOf="@+id/btn_login_login"
+            app:layout_constraintTop_toBottomOf="@+id/btn_login_login"/>
+
+        <TextView
+            android:id="@+id/label_login_result"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:textAlignment="center"
+            android:textColor="?attr/colorError"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+    </android.support.constraint.ConstraintLayout>
 </android.support.constraint.ConstraintLayout>
