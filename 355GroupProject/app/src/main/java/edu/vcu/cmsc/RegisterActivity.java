@@ -54,8 +54,7 @@ public class RegisterActivity extends AppCompatActivity
 								             .getText().toString();
 						String pw2 = ((TextView) v).getText().toString();
 						boolean match = pw2.equals(pw1);
-						((TextView) v)
-								.setError(match ? null : "Passwords don't match!");
+						((TextView) v).setError(match ? null : "Passwords don't match!");
 						passVerify = match;
 					}
 				});
@@ -70,8 +69,7 @@ public class RegisterActivity extends AppCompatActivity
 		  .addOnCompleteListener(
 				  task ->
 				  {
-					  if (!task.getResult()
-					           .isEmpty())
+					  if (!task.getResult().isEmpty())
 					  {
 						  textView.setError(errMsg);
 						  if (field.equals("username"))
