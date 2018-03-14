@@ -5,16 +5,12 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
 
 public class LoginActivity extends Activity
@@ -82,49 +78,47 @@ public class LoginActivity extends Activity
 	private void login(String username, String password)
 	{
 		FirebaseFirestore db = FirebaseFirestore.getInstance();
+		
 		db.collection("login")
 		  .whereEqualTo("username", username)
 		  .whereEqualTo("password", password)
-		  .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>()
-		{
-			@Override
-			public void onComplete(@NonNull Task<QuerySnapshot> task)
-			{
-				boolean exists = false;
-				boolean approved = false;
-				if (task.isSuccessful())
+		  .get().addOnCompleteListener(
+				task ->
 				{
-					for (DocumentSnapshot doc : task.getResult())
+					boolean exists = false;
+					boolean approved = false;
+					if (task.isSuccessful())
 					{
-						exists = true;
-						approved = doc.getBoolean("approved");
-					}
-					if (popup != null)
-					{
-						popup.dismiss();
-					}
-					enableAll(true);
-					
-					if (!exists)
-					{
-						setPref(username, password, false);
-						onLoginFailure();
-					}
-					else
-					{
-						setPref(username, password, true);
-						if (approved)
+						for (DocumentSnapshot doc : task.getResult())
 						{
-							onLoginSuccess();
+							exists = true;
+							approved = doc.getBoolean("approved");
+						}
+						if (popup != null)
+						{
+							popup.dismiss();
+						}
+						enableAll(true);
+						
+						if (!exists)
+						{
+							setPref(username, password, false);
+							onLoginFailure();
 						}
 						else
 						{
-							onApprovalFailure();
+							setPref(username, password, true);
+							if (approved)
+							{
+								onLoginSuccess();
+							}
+							else
+							{
+								onApprovalFailure();
+							}
 						}
 					}
-				}
-			}
-		});
+				});
 	}
 	
 	private void setPref(String uname, String pass, boolean allowSet)

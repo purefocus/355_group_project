@@ -27,63 +27,68 @@ public class RegisterActivity extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_register);
 		
-		findViewById(R.id.field_register_username)
-				.setOnFocusChangeListener((v, hasFocus) ->
-				                          {
-					                          if (!hasFocus)
-					                          {
-						                          checkExists(v, "username", "Username exists!");
-					                          }
-				                          });
-		findViewById(R.id.field_register_email)
-				.setOnFocusChangeListener((v, hasFocus) ->
-				                          {
-					                          if (!hasFocus)
-					                          {
-						                          checkExists(v, "email", "Email exists!");
-					                          }
-				                          });
-		findViewById(R.id.field_register_password2)
-				.setOnFocusChangeListener((v, hasFocus) ->
-				                          {
-					                          if (!hasFocus)
-					                          {
-						                          String pw1 = ((TextView) findViewById(R.id.field_register_password))
-								                                       .getText().toString();
-						                          String pw2 = ((TextView) v).getText().toString();
-						                          boolean match = pw2.equals(pw1);
-						                          ((TextView) v)
-								                          .setError(match ? null : "Passwords don't match!");
-						                          passVerify = match;
-					                          }
-				                          });
+		findViewById(R.id.field_register_username).setOnFocusChangeListener(
+				(v, hasFocus) ->
+				{
+					if (!hasFocus)
+					{
+						checkExists(v, "username", "Username exists!");
+					}
+				});
+		
+		findViewById(R.id.field_register_email).setOnFocusChangeListener(
+				(v, hasFocus) ->
+				{
+					if (!hasFocus)
+					{
+						checkExists(v, "email", "Email exists!");
+					}
+				});
+		
+		findViewById(R.id.field_register_password2).setOnFocusChangeListener(
+				(v, hasFocus) ->
+				{
+					if (!hasFocus)
+					{
+						String pw1 = ((TextView) findViewById(R.id.field_register_password))
+								             .getText().toString();
+						String pw2 = ((TextView) v).getText().toString();
+						boolean match = pw2.equals(pw1);
+						((TextView) v)
+								.setError(match ? null : "Passwords don't match!");
+						passVerify = match;
+					}
+				});
 	}
 	
 	private void checkExists(View view, String field, String errMsg)
 	{
 		TextView textView = (TextView) view;
 		FirebaseFirestore db = FirebaseFirestore.getInstance();
-		db.collection("login").whereEqualTo(field, textView.getText().toString().trim()).get()
-		  .addOnCompleteListener(task ->
-		                         {
-			                         if (!task.getResult().isEmpty())
-			                         {
-				                         textView.setError(errMsg);
-				                         if (field.equals("username"))
-				                         { unameVerify = false; }
-				                         else
-				                         { emailVerify = false; }
-				
-			                         }
-			                         else
-			                         {
-				                         textView.setError(null);
-				                         if (field.equals("username"))
-				                         { unameVerify = true; }
-				                         else
-				                         { emailVerify = true; }
-			                         }
-		                         });
+		String text = textView.getText().toString();
+		db.collection("login").whereEqualTo(field, text).get()
+		  .addOnCompleteListener(
+				  task ->
+				  {
+					  if (!task.getResult()
+					           .isEmpty())
+					  {
+						  textView.setError(errMsg);
+						  if (field.equals("username"))
+						  { unameVerify = false; }
+						  else
+						  { emailVerify = false; }
+						
+					  }
+					  else
+					  {
+						  textView.setError(null);
+						  if (field.equals("username"))
+						  { unameVerify = true; }
+						  else
+						  { emailVerify = true; }
+					  }
+				  });
 	}
 	
 	public void btn_register(View view)
