@@ -8,7 +8,7 @@
     tools:layout_editor_absoluteY="81dp">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/label_artifact_title"
         android:layout_width="38dp"
         android:layout_height="22dp"
         android:layout_marginEnd="61dp"
@@ -16,12 +16,12 @@
         android:layout_marginTop="32dp"
         android:text="Title:"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/editText"
+        app:layout_constraintEnd_toStartOf="@+id/field_artifact_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/field_artifact_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/field_artifact_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="182dp"
@@ -43,12 +43,12 @@
         android:inputType="textMultiLine"
         android:singleLine="false"
         android:text="This artifact was found at...."
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/btn_upload_pic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/field_artifact_title" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/label_artifact_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="22dp"
@@ -56,15 +56,15 @@
         android:layout_marginTop="104dp"
         android:text="Description:"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/editText4"
+        app:layout_constraintEnd_toStartOf="@+id/field_artifact_description"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/label_artifact_picture"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="15dp"
         android:layout_marginEnd="288dp"
         android:layout_marginStart="38dp"
         android:layout_marginTop="84dp"
@@ -72,10 +72,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/label_artifact_description" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_upload_pic"
         android:layout_width="166dp"
         android:layout_height="39dp"
         android:layout_marginBottom="14dp"
@@ -83,13 +83,13 @@
         android:layout_marginStart="38dp"
         android:layout_marginTop="114dp"
         android:text="Upload picture..."
-        app:layout_constraintBottom_toTopOf="@+id/checkBox"
+        app:layout_constraintBottom_toTopOf="@+id/check_for_sale"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/label_artifact_picture" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/check_for_sale"
         android:layout_width="89dp"
         android:layout_height="48dp"
         android:layout_marginBottom="80dp"
@@ -99,7 +99,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/field_artifact_price"
         android:layout_width="112dp"
         android:layout_height="47dp"
         android:layout_marginBottom="82dp"
@@ -110,10 +110,10 @@
         android:text="$200.00"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView6" />
+        app:layout_constraintStart_toEndOf="@+id/label_artifact_price" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/label_artifact_price"
         android:layout_width="39dp"
         android:layout_height="19dp"
         android:layout_marginBottom="31dp"
@@ -122,13 +122,13 @@
         android:layout_marginTop="29dp"
         android:text="Price"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
-        app:layout_constraintEnd_toStartOf="@+id/editText5"
-        app:layout_constraintStart_toEndOf="@+id/checkBox"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_make_catalog_entry"
+        app:layout_constraintEnd_toStartOf="@+id/field_artifact_price"
+        app:layout_constraintStart_toEndOf="@+id/check_for_sale"
+        app:layout_constraintTop_toBottomOf="@+id/btn_upload_pic" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btn_make_catalog_entry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
