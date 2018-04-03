@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:label="@string/register.title"
-    tools:context="edu.vcu.cmsc.RegisterActivity">
+    tools:context="edu.vcu.cmsc.ui.user.RegisterActivity">
 
     <ScrollView
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package edu.vcu.cmsc;
+package edu.vcu.cmsc.ui.user;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +10,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import edu.vcu.cmsc.R;
 
 public class RegisterActivity extends AppCompatActivity
 {

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:label="@string/login.title"
-    tools:context="edu.vcu.cmsc.LoginActivity">
+    tools:context="edu.vcu.cmsc.ui.user.LoginActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="0dp"
