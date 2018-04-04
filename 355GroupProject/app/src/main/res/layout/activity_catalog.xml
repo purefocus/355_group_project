@@ -7,4 +7,28 @@
     android:layout_height="match_parent"
     tools:context="edu.vcu.cmsc.ui.catalog.CatalogActivity">
 
+    <Button
+        android:id="@+id/cat_btn_new_entry"
+        style="@android:style/Widget.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="btn_new"
+        android:text="New"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ScrollView
+        android:id="@+id/cat_scroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cat_btn_new_entry">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/cat_item_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>

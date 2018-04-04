@@ -7,4 +7,108 @@
     android:layout_height="match_parent"
     tools:context="edu.vcu.cmsc.ui.catalog.CatalogEntryActivity">
 
+    <ScrollView
+        android:id="@+id/artefact"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <fragment
+                android:id="@+id/map_frag"
+                android:name="com.google.android.gms.maps.MapFragment"
+                android:layout_width="0dp"
+                android:layout_height="145dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cat_description"/>
+
+            <TextView
+                android:id="@+id/cat_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Artifact Title"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.503"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/cat_desc_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Artifact Description"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cat_img"/>
+
+            <TextView
+                android:id="@+id/cat_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cat_desc_label"/>
+
+
+            <ImageView
+                android:id="@+id/cat_img"
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@android:drawable/editbox_dropdown_light_frame"
+                android:onClick="btn_img"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cat_title"/>
+
+            <Button
+                android:id="@+id/cat_img_next"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:onClick="btn_img"
+                android:text="@string/cat_entry_img_next"
+                app:layout_constraintBottom_toBottomOf="@+id/cat_img"
+                app:layout_constraintStart_toStartOf="@+id/cat_img"
+                app:layout_constraintTop_toTopOf="@+id/cat_img"
+                app:layout_constraintVertical_bias="1.0"/>
+
+            <Button
+                android:id="@+id/cat_img_prev"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:onClick="btn_img"
+                android:text="@string/cat_entry_img_prev"
+                app:layout_constraintBottom_toBottomOf="@+id/cat_img"
+                app:layout_constraintEnd_toEndOf="@+id/cat_img"
+                app:layout_constraintTop_toTopOf="@+id/cat_img"/>
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
 </android.support.constraint.ConstraintLayout>
