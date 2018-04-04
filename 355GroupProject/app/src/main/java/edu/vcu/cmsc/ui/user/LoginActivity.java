@@ -13,7 +13,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import edu.vcu.cmsc.R;
-import edu.vcu.cmsc.ui.WelcomeActivity;
 
 
 public class LoginActivity extends Activity

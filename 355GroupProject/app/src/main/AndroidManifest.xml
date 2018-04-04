@@ -22,10 +22,6 @@
             android:name=".ui.user.RegisterActivity"
             android:label="@string/register.title">
         </activity>
-        <activity
-            android:name=".ui.WelcomeActivity"
-            android:label="@string/welcome.title">
-        </activity>
         <activity android:name=".ui.catalog.CatalogActivity">
         </activity>
         <activity android:name=".ui.catalog.CatalogEntryActivity">
