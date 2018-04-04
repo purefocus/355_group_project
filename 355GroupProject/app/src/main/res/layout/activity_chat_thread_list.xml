@@ -27,6 +27,7 @@
         android:layout_marginBottom="11dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
+        android:onClick="btn_thread_created"
         app:layout_constraintBottom_toTopOf="@+id/list_threads"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

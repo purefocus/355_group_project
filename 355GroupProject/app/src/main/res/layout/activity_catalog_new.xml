@@ -94,6 +94,9 @@
         android:layout_height="48dp"
         android:layout_marginBottom="80dp"
         android:layout_marginStart="36dp"
+        android:checked="false"
+        android:duplicateParentState="false"
+        android:onClick="check_for_sale"
         android:text="For Sale"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -134,6 +137,7 @@
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="141dp"
         android:layout_marginStart="141dp"
+        android:onClick="btn_make_entry"
         android:text="Make Post"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
