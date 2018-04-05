@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import edu.vcu.cmsc.R;
+import edu.vcu.cmsc.ui.catalog.CatalogActivity;
 
 public class WelcomeActivity extends AppCompatActivity{
 
@@ -32,7 +33,7 @@ public class WelcomeActivity extends AppCompatActivity{
     {
         if (v. getId() == R.id.catalogButton)
         {
-            Intent i = new Intent(this, catalogMain.class);
+            Intent i = new Intent(this, CatalogActivity.class);
             startActivity(i);
         }
     }
@@ -41,8 +42,8 @@ public class WelcomeActivity extends AppCompatActivity{
     {
         if (v. getId() == R.id.calendarButton)
         {
-            Intent i = new Intent(this, calendarMain.class);
-            startActivity(i);
+            //Intent i = new Intent(this, calendarMain.class);
+            //startActivity(i);
         }
     }
 
@@ -50,8 +51,8 @@ public class WelcomeActivity extends AppCompatActivity{
     {
         if (v. getId() == R.id.chatButton)
         {
-            Intent i = new Intent(this, chatMain.class);
-            startActivity(i);
+            //Intent i = new Intent(this, chatMain.class);
+            //startActivity(i);
         }
     }
 
@@ -59,8 +60,8 @@ public class WelcomeActivity extends AppCompatActivity{
     {
         if (v. getId() == R.id.mapButton)
         {
-            Intent i = new Intent(this, mapMain.class);
-            startActivity(i);
+            //Intent i = new Intent(this, mapMain.class);
+            //startActivity(i);
         }
     }
 
@@ -68,8 +69,8 @@ public class WelcomeActivity extends AppCompatActivity{
     {
         if (v. getId() == R.id.settingsButton)
         {
-            Intent i = new Intent(this, settingsMain.class);
-            startActivity(i);
+            //Intent i = new Intent(this, settingsMain.class);
+            //startActivity(i);
         }
     }
 }
