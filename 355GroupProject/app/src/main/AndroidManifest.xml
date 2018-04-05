@@ -21,10 +21,6 @@
             android:name=".ui.user.RegisterActivity"
             android:label="@string/register.title">
         </activity>
-        <activity
-            android:name=".ui.WelcomeActivity"
-            android:label="@string/welcome.title">
-        </activity>
         <activity android:name=".ui.catalog.CatalogActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -33,6 +29,17 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.catalog.CatalogEntryActivity">
+        </activity>
+        <activity android:name=".ui.settingsActivity">
+        </activity>
+        <activity android:name=".ui.mapActivity">
+        </activity>
+        <activity android:name=".ui.WelcomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 

@@ -1,24 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="settingsClick"
     tools:context="edu.vcu.cmsc.ui.WelcomeActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/notiTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Logged in!"
-        android:textSize="30sp"
+        android:text="Notifications"
+        android:textColor="@android:color/black"
+        android:textColorLink="@color/colorAccent"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.048" />
+
+    <TextView
+        android:id="@+id/notiBox"
+        android:layout_width="282dp"
+        android:layout_height="97dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notiTitle" />
+
+    <Button
+        android:id="@+id/mapButton"
+        android:layout_width="107dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="40dp"
+        android:onClick="mapClick"
+        android:text="Map"
+        app:layout_constraintEnd_toEndOf="@+id/notiBox"
+        app:layout_constraintTop_toBottomOf="@+id/calendarButton" />
+
+    <Button
+        android:id="@+id/calendarButton"
+        android:layout_width="111dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="44dp"
+        android:onClick="calendarClick"
+        android:text="Calendar"
+        app:layout_constraintEnd_toEndOf="@+id/notiBox"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <Button
+        android:id="@+id/chatButton"
+        android:layout_width="98dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="36dp"
+        android:onClick="chatClick"
+        android:text="Chat"
+        app:layout_constraintStart_toStartOf="@+id/notiBox"
+        app:layout_constraintTop_toBottomOf="@+id/catalogButton" />
+
+    <Button
+        android:id="@+id/catalogButton"
+        android:layout_width="99dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="44dp"
+        android:onClick="catalogClick"
+        android:text="Catalog"
+        app:layout_constraintStart_toStartOf="@+id/notiBox"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <Button
+        android:id="@+id/settingsButton"
+        android:layout_width="170dp"
+        android:layout_height="49dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="56dp"
+        android:onClick="settingsClick"
+        android:text="Settings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chatButton" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="?android:attr/listDivider"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notiBox" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="Show Popup"
+        tools:layout_editor_absoluteX="254dp"
+        tools:layout_editor_absoluteY="8dp" />
+
+
 </android.support.constraint.ConstraintLayout>
