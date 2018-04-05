@@ -1,4 +1,4 @@
-package edu.vcu.cmsc.ui.user;
+package edu.vcu.cmsc.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -60,8 +60,8 @@ public class WelcomeActivity extends AppCompatActivity{
     {
         if (v. getId() == R.id.mapButton)
         {
-            //Intent i = new Intent(this, mapMain.class);
-            //startActivity(i);
+            Intent i = new Intent(this, mapActivity.class);
+            startActivity(i);
         }
     }
 
@@ -69,8 +69,8 @@ public class WelcomeActivity extends AppCompatActivity{
     {
         if (v. getId() == R.id.settingsButton)
         {
-            //Intent i = new Intent(this, settingsMain.class);
-            //startActivity(i);
+            Intent i = new Intent(this, settingsActivity.class);
+            startActivity(i);
         }
     }
 }

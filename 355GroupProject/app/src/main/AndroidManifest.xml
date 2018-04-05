@@ -12,11 +12,6 @@
         <activity
             android:name=".ui.user.LoginActivity"
             android:label="@string/login.title">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.user.RegisterActivity"
@@ -25,6 +20,17 @@
         <activity android:name=".ui.catalog.CatalogActivity">
         </activity>
         <activity android:name=".ui.catalog.CatalogEntryActivity">
+        </activity>
+        <activity android:name=".ui.settingsActivity">
+        </activity>
+        <activity android:name=".ui.mapActivity">
+        </activity>
+        <activity android:name=".ui.WelcomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 
