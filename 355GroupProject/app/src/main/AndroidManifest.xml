@@ -3,7 +3,6 @@
           package="edu.vcu.cmsc">
 
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,8 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <meta-data android:name="com.google.android.geo.API_KEY"
-                   android:value="AIzaSyBveplzKhybUEsyNlHpjeC0IPH5AWR7C50"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBveplzKhybUEsyNlHpjeC0IPH5AWR7C50"/>
+
         <activity
             android:name=".ui.user.LoginActivity"
             android:label="@string/login.title">
@@ -24,16 +25,18 @@
         <activity
             android:name=".ui.WelcomeActivity"
             android:label="@string/welcome.title">
-        </activity>
-        <activity android:name=".ui.catalog.CatalogActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".ui.catalog.CatalogActivity">
+        </activity>
         <activity android:name=".ui.catalog.CatalogEntryActivity">
         </activity>
+        <activity android:name=".ui.SettingsActivity"/>
+        <activity android:name=".ui.MapActivity"/>
     </application>
 
 </manifest>

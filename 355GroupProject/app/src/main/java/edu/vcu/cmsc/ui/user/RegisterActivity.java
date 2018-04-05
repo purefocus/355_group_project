@@ -1,7 +1,7 @@
 package edu.vcu.cmsc.ui.user;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -13,7 +13,7 @@ import java.util.Map;
 
 import edu.vcu.cmsc.R;
 
-public class RegisterActivity extends AppCompatActivity
+public class RegisterActivity extends Activity
 {
 	
 	private static final String TAG = "REGISTER";
