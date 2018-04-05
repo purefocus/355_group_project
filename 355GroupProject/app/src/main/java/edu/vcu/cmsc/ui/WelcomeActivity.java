@@ -1,11 +1,11 @@
 package edu.vcu.cmsc.ui;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 
 import edu.vcu.cmsc.R;
 
-public class WelcomeActivity extends AppCompatActivity
+public class WelcomeActivity extends Activity
 {
 	
 	@Override

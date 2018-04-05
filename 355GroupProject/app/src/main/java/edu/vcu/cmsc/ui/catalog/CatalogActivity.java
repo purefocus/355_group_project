@@ -2,12 +2,10 @@ package edu.vcu.cmsc.ui.catalog;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ListView;
 
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -67,6 +65,8 @@ public class CatalogActivity extends Activity implements CatalogAdapter.CatalogI
 	public void btn_new(View view)
 	{
 		//TODO: Add new catalog entry activity here
+		Intent intent = new Intent(this, CatalogEntryNew.class);
+		startActivity(intent);
 	}
 	
 	@Override

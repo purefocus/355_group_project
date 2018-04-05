@@ -21,7 +21,7 @@ public class CatalogEntryNew extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_catalog_entry);
+        setContentView(R.layout.activity_catalog_new);
     }
 
     /*public void checkbox_for_sale_checked(View view) {
