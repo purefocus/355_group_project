@@ -1,7 +1,7 @@
 package edu.vcu.cmsc.data;
 
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class CatalogEntryData
 {
@@ -12,6 +12,6 @@ public class CatalogEntryData
 	public String commentsKey;
 	public float lat;
 	public float lon;
-	public ArrayList<String> images;
+	public List<String> images;
 	
 }
