@@ -9,16 +9,14 @@
 
     <TextView
         android:id="@+id/label_artifact_title"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="38dp"
+        android:layout_height="42dp"
         android:layout_marginBottom="29dp"
-        android:layout_marginEnd="65dp"
         android:layout_marginStart="38dp"
         android:layout_marginTop="16dp"
         android:text="Title:"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/label_artifact_description"
-        app:layout_constraintEnd_toStartOf="@+id/field_artifact_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,13 +24,12 @@
         android:id="@+id/field_artifact_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="9dp"
         android:layout_marginEnd="28dp"
+        android:layout_marginStart="65dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="My Artifact"
-        app:layout_constraintBottom_toTopOf="@+id/field_artifact_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/label_artifact_title"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,15 +38,15 @@
         android:id="@+id/field_artifact_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="248dp"
-        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="76dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="9dp"
         android:ems="10"
         android:inputType="textMultiLine"
         android:singleLine="false"
         android:text="This artifact was found at...."
-        app:layout_constraintBottom_toTopOf="@+id/field_artifact_price"
+        app:layout_constraintBottom_toTopOf="@+id/cat_img"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/label_artifact_description"
         app:layout_constraintTop_toBottomOf="@+id/field_artifact_title" />
 
     <TextView
@@ -57,38 +54,41 @@
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_marginBottom="97dp"
-        android:layout_marginStart="12dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginStart="38dp"
         android:text="Description:"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/label_artifact_picture"
         app:layout_constraintEnd_toStartOf="@+id/field_artifact_description"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_artifact_title" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/label_artifact_picture"
         android:layout_width="65dp"
-        android:layout_height="0dp"
+        android:layout_height="28dp"
         android:layout_marginBottom="59dp"
-        android:layout_marginEnd="38dp"
+        android:layout_marginEnd="46dp"
         android:layout_marginStart="38dp"
         android:text="Pictures:"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btn_upload_pic"
-        app:layout_constraintEnd_toStartOf="@+id/field_artifact_description"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_artifact_description" />
+        app:layout_constraintEnd_toStartOf="@+id/cat_img"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn_upload_pic"
-        android:layout_width="199dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="51dp"
-        android:layout_marginStart="38dp"
-        android:text="Upload picture..."
-        app:layout_constraintBottom_toTopOf="@+id/check_for_sale"
+        android:layout_width="173dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:onClick="btn_make_entry"
+        android:text="Upload from device"
+        app:layout_constraintBottom_toTopOf="@+id/label_artifact_price"
+        app:layout_constraintEnd_toStartOf="@+id/btn_upload_from_url"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_artifact_picture" />
+        app:layout_constraintTop_toBottomOf="@+id/cat_img" />
 
     <CheckBox
         android:id="@+id/check_for_sale"
@@ -97,6 +97,7 @@
         android:layout_marginBottom="86dp"
         android:layout_marginEnd="63dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="51dp"
         android:checked="false"
         android:duplicateParentState="false"
         android:onClick="check_for_sale"
@@ -108,39 +109,71 @@
 
     <EditText
         android:id="@+id/field_artifact_price"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="18dp"
-        android:layout_marginEnd="51dp"
+        android:layout_width="64dp"
+        android:layout_height="44dp"
+        android:layout_marginBottom="81dp"
+        android:layout_marginEnd="50dp"
         android:ems="10"
         android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/btn_make_catalog_entry"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/label_artifact_price"
-        app:layout_constraintTop_toBottomOf="@+id/field_artifact_description" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/label_artifact_price"
-        android:layout_width="0dp"
+        android:layout_width="72dp"
         android:layout_height="27dp"
         android:layout_marginBottom="33dp"
         android:layout_marginEnd="43dp"
         android:text="Price"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btn_make_catalog_entry"
-        app:layout_constraintEnd_toStartOf="@+id/field_artifact_price"
-        app:layout_constraintStart_toEndOf="@+id/check_for_sale" />
+        app:layout_constraintEnd_toStartOf="@+id/field_artifact_price" />
 
     <Button
         android:id="@+id/btn_make_catalog_entry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:layout_marginEnd="11dp"
+        android:layout_marginEnd="125dp"
+        android:layout_marginStart="158dp"
         android:onClick="btn_make_entry"
         android:text="Make Post"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/field_artifact_price"
-        app:layout_constraintTop_toBottomOf="@+id/field_artifact_price" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/cat_img"
+        android:layout_width="86dp"
+        android:layout_height="57dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="28dp"
+        android:layout_marginEnd="149dp"
+        android:layout_marginStart="46dp"
+        android:layout_marginTop="77dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_upload_pic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/label_artifact_picture"
+        app:layout_constraintTop_toBottomOf="@+id/field_artifact_description" />
+
+    <Button
+        android:id="@+id/btn_upload_from_url"
+        android:layout_width="173dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="49dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="30dp"
+        android:onClick="btn_make_entry"
+        android:text="Upload from URL"
+        app:layout_constraintBottom_toTopOf="@+id/field_artifact_price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_upload_pic"
+        app:layout_constraintTop_toBottomOf="@+id/cat_img" />
 
 </android.support.constraint.ConstraintLayout>
