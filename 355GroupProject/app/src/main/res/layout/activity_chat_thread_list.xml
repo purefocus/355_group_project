@@ -8,9 +8,9 @@
 
     <TextView
         android:id="@+id/label_threads"
-        android:layout_width="103dp"
+        android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="218dp"
+        android:layout_marginEnd="202dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="Threads:"
@@ -20,28 +20,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/btn_create_thread"
-        android:layout_width="39dp"
-        android:layout_height="38dp"
-        android:layout_marginBottom="11dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
-        android:onClick="btn_thread_created"
-        app:layout_constraintBottom_toTopOf="@+id/list_threads"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_input_add" />
-
     <ListView
         android:id="@+id/list_threads"
         android:layout_width="368dp"
-        android:layout_height="438dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_create_thread" />
+
+    <Button
+        android:id="@+id/btn_create_thread"
+        android:layout_width="46dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginTop="15dp"
+        android:onClick="btn_make_entry"
+        android:text="+"
+        app:layout_constraintBottom_toTopOf="@+id/list_threads"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/label_threads"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

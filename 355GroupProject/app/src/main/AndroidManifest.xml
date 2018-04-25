@@ -35,6 +35,10 @@
         </activity>
         <activity android:name=".ui.catalog.CatalogEntryActivity">
         </activity>
+        <activity android:name=".ui.catalog.CatalogEntryNew">
+        </activity>
+        <activity android:name=".ui.chat.ChatThreadList">
+        </activity>
         <activity android:name=".ui.SettingsActivity"/>
         <activity android:name=".ui.MapActivity"/>
     </application>

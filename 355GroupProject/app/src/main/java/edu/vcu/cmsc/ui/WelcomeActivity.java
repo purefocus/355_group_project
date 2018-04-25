@@ -7,6 +7,7 @@ import android.view.View;
 
 import edu.vcu.cmsc.R;
 import edu.vcu.cmsc.ui.catalog.CatalogActivity;
+import edu.vcu.cmsc.ui.chat.ChatThreadList;
 
 public class WelcomeActivity extends Activity
 {
@@ -46,8 +47,8 @@ public class WelcomeActivity extends Activity
 	{
 		if (v. getId() == R.id.chatButton)
 		{
-			//Intent i = new Intent(this, chatMain.class);
-			//startActivity(i);
+			Intent i = new Intent(this, ChatThreadList.class);
+			startActivity(i);
 		}
 	}
 	
