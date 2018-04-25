@@ -3,14 +3,20 @@ package edu.vcu.cmsc.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import edu.vcu.cmsc.R;
 import edu.vcu.cmsc.ui.catalog.CatalogActivity;
 import edu.vcu.cmsc.ui.chat.ChatThreadList;
+import edu.vcu.cmsc.ui.user.LoginActivity;
 
 public class WelcomeActivity extends Activity
 {
+	
+	private static final int REQUEST_LOGIN = 1;
+	
 	
 	
 	@Override
@@ -18,11 +24,34 @@ public class WelcomeActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
 		
+		if(!LoginActivity.LOGGED_IN)
+		{
+			Intent intent = new Intent(this, LoginActivity.class);
+			
+			startActivityForResult(intent, REQUEST_LOGIN);
+		}
+		
+		
 		//notifications loading
 		
 	}
 	
 	
+	public void onActivityResult(int request, int result, Intent data)
+	{
+		if(request == REQUEST_LOGIN)
+		{
+			if(result == RESULT_OK)
+			{
+				Toast.makeText(this, "Logged in!", Toast.LENGTH_LONG).show();
+			}
+			else
+			{
+				Intent intent = new Intent(this, LoginActivity.class);
+				startActivityForResult(intent, REQUEST_LOGIN);
+			}
+		}
+	}
 	
 	//menu buttons
 	public void catalogClick(View v)

@@ -20,6 +20,8 @@ public class LoginActivity extends Activity
 {
 	private static final String TAG = "LOGIN";
 	
+	public static boolean LOGGED_IN = false;
+	
 	private AlertDialog popup;
 	
 	@Override
@@ -43,6 +45,12 @@ public class LoginActivity extends Activity
 			login(username, password);
 		}
 		
+	}
+	
+	@Override
+	public void onBackPressed()
+	{
+		// don't allow the user to back out of login screen
 	}
 	
 	public void btn_login(View view)
@@ -147,8 +155,11 @@ public class LoginActivity extends Activity
 	private void onLoginSuccess()
 	{
 		setResultMessage(" ");
-		Intent intent = new Intent(this, WelcomeActivity.class);
-		startActivity(intent);
+//		Intent intent = new Intent(this, WelcomeActivity.class);
+//		startActivity(intent);
+		
+		setResult(RESULT_OK);
+		finish();
 	}
 	
 	public void onApprovalFailure()

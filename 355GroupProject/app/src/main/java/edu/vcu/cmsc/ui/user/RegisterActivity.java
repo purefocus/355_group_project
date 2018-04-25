@@ -107,28 +107,32 @@ public class RegisterActivity extends Activity
 		{
 			textView.setError("Passwords don't match");
 		}
+		else
+		{
+			passVerify = true;
+		}
 		
 		if (hasErr || !unameVerify || !emailVerify || !passVerify)
 		{
 			Log.d(TAG, "Error detected! " + hasErr + " : " + unameVerify + " : " + emailVerify + " : " + passVerify);
 			return;
 		}
-		enableAll(false);
+//		enableAll(false);
 		
 		
 		registerUser(fname, lname, username, email, password);
 		
 	}
 	
-	private void enableAll(boolean en)
-	{
-		findViewById(R.id.field_register_fname).setEnabled(en);
-		findViewById(R.id.field_register_lname).setEnabled(en);
-		findViewById(R.id.field_register_email).setEnabled(en);
-		findViewById(R.id.field_register_username).setEnabled(en);
-		findViewById(R.id.field_register_password).setEnabled(en);
-		findViewById(R.id.field_register_password2).setEnabled(en);
-	}
+//	private void enableAll(boolean en)
+//	{
+//		findViewById(R.id.field_register_fname).setEnabled(en);
+//		findViewById(R.id.field_register_lname).setEnabled(en);
+//		findViewById(R.id.field_register_email).setEnabled(en);
+//		findViewById(R.id.field_register_username).setEnabled(en);
+//		findViewById(R.id.field_register_password).setEnabled(en);
+//		findViewById(R.id.field_register_password2).setEnabled(en);
+//	}
 	
 	private String verifyField(int id)
 	{
