@@ -8,6 +8,8 @@ public class CatalogEntryData
 	
 	public String title;
 	public String description;
+	//public String price;
+
 	public String brief;
 	public String commentsKey;
 	public float lat;
