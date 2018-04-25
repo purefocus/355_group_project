@@ -26,15 +26,13 @@ public class CatalogEntryNew extends Activity {
         setContentView(R.layout.activity_catalog_new);
     }
 
-    public int check_for_sale(View view) {
+    public void check_for_sale(View view) {
         boolean checked = ((CheckBox) view).isChecked();
 
         if (checked) {
-            /*EditText priceField = (EditText)findViewById(R.id.field_artifact_price);
-            double price = Double.parseDouble(String.valueOf(priceField.getText()));*/
-            return 1;
+            //EditText priceField = (EditText)findViewById(R.id.field_artifact_price);
+            //double price = Double.parseDouble(String.valueOf(priceField.getText()));
         }
-        return 0;
     }
 
     public void btn_make_entry(View v) { // On click of "Submit Values" button on "Enter Values" screen
