@@ -86,7 +86,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/cat_title"/>
 
             <Button
-                android:id="@+id/cat_img_next"
+                android:id="@+id/cat_img_prev"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
@@ -95,10 +95,10 @@
                 app:layout_constraintBottom_toBottomOf="@+id/cat_img"
                 app:layout_constraintStart_toStartOf="@+id/cat_img"
                 app:layout_constraintTop_toTopOf="@+id/cat_img"
-                app:layout_constraintVertical_bias="1.0"/>
+                app:layout_constraintVertical_bias="1.0" />
 
             <Button
-                android:id="@+id/cat_img_prev"
+                android:id="@+id/cat_img_next"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
@@ -106,7 +106,7 @@
                 android:text="@string/cat_entry_img_prev"
                 app:layout_constraintBottom_toBottomOf="@+id/cat_img"
                 app:layout_constraintEnd_toEndOf="@+id/cat_img"
-                app:layout_constraintTop_toTopOf="@+id/cat_img"/>
+                app:layout_constraintTop_toTopOf="@+id/cat_img" />
         </android.support.constraint.ConstraintLayout>
 
     </ScrollView>
