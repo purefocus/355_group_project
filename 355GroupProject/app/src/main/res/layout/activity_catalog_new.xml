@@ -85,10 +85,11 @@
         android:layout_height="0dp"
         android:layout_marginBottom="51dp"
         android:layout_marginStart="38dp"
+        android:onClick="btn_upload"
         android:text="Upload picture..."
         app:layout_constraintBottom_toTopOf="@+id/check_for_sale"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/label_artifact_picture" />
+        app:layout_constraintTop_toBottomOf="@+id/label_artifact_picture"/>
 
     <CheckBox
         android:id="@+id/check_for_sale"

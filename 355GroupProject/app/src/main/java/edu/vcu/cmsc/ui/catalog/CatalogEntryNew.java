@@ -18,6 +18,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -145,9 +146,7 @@ public class CatalogEntryNew extends Activity
 							{
 								//finish();
 								c.key = task.getResult().getId();
-//								System.out.println();
 								uploadAllImages(c.key);
-//								CatalogEntryTable.uploadImages(this, c.key, imgList);
 								Toast.makeText(this, "Uploading images...", Toast.LENGTH_LONG)
 								     .show();
 							}
@@ -190,7 +189,6 @@ public class CatalogEntryNew extends Activity
 		upCount = imgList.size();
 		for (Uri img : imgList)
 		{
-			System.out.println("Uploading img: " + img.toString());
 			ref.child(img.getLastPathSegment())
 			   .putFile(img)
 			   .addOnCompleteListener(

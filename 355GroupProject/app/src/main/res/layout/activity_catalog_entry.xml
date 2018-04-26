@@ -17,17 +17,29 @@
             android:layout_height="match_parent">
 
             <fragment
+                android:id="@+id/catalog_thread"
+                android:name="edu.vcu.cmsc.ui.chat.ThreadFragment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.51"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cat_description"
+                tools:layout="@layout/frag_thread"/>
+
+            <fragment
                 android:id="@+id/map_frag"
                 android:name="com.google.android.gms.maps.MapFragment"
                 android:layout_width="0dp"
-                android:layout_height="145dp"
-                android:layout_marginBottom="8dp"
+                android:layout_height="200dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cat_description"/>
+                app:layout_constraintTop_toBottomOf="@+id/cat_title"/>
 
             <TextView
                 android:id="@+id/cat_title"
@@ -51,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="Artifact Description"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -107,6 +119,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/cat_img"
                 app:layout_constraintEnd_toEndOf="@+id/cat_img"
                 app:layout_constraintTop_toTopOf="@+id/cat_img"/>
+
         </android.support.constraint.ConstraintLayout>
 
     </ScrollView>

@@ -2,6 +2,7 @@ package edu.vcu.cmsc.ui.catalog;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,12 +22,16 @@ import com.google.firebase.storage.StorageReference;
 
 import edu.vcu.cmsc.R;
 import edu.vcu.cmsc.data.CatalogEntryData;
+import edu.vcu.cmsc.ui.chat.ThreadFragment;
 
-public class CatalogEntryActivity extends Activity implements OnMapReadyCallback
+public class CatalogEntryActivity extends FragmentActivity implements OnMapReadyCallback
 {
 	
 	private int imagePosition;
 	private ImageView mImageView;
+	private View mMapView;
+	
+	private ThreadFragment mThread;
 	
 	private CatalogEntryData mCatalogData;
 	private FirebaseStorage mStorage;
@@ -43,6 +48,11 @@ public class CatalogEntryActivity extends Activity implements OnMapReadyCallback
 		mKey = getIntent().getStringExtra("entryKey");
 		
 		mImageView = findViewById(R.id.cat_img);
+		mMapView = findViewById(R.id.map_frag);
+		mMapView.setVisibility(View.INVISIBLE);
+		
+		mThread = (ThreadFragment) getFragmentManager().findFragmentById(R.id.catalog_thread);
+		
 		
 		
 		MapFragment mapFrag = (MapFragment) getFragmentManager().findFragmentById(R.id.map_frag);
@@ -89,23 +99,40 @@ public class CatalogEntryActivity extends Activity implements OnMapReadyCallback
 				{
 					if (--imagePosition < 0)
 					{
-						imagePosition = mCatalogData.images.size() - 1;
+						imagePosition = mCatalogData.images.size();
 					}
 				}
 				else
 				{
-					if (++imagePosition >= mCatalogData.images.size())
+					if (++imagePosition > mCatalogData.images.size())
 					{
 						imagePosition = 0;
 					}
 				}
 			}
 			
-			String img = mCatalogData.images.get(imagePosition);
+			if(imagePosition == mCatalogData.images.size())
+			{
+				mImageView.setVisibility(View.INVISIBLE);
+				mImageView.setEnabled(false);
+				mMapView.setVisibility(View.VISIBLE);
+				mMapView.setEnabled(true);
+			}
+			else
+			{
+				mImageView.setVisibility(View.VISIBLE);
+				mImageView.setEnabled(true);
+				mMapView.setVisibility(View.INVISIBLE);
+				mMapView.setEnabled(false);
+				
+				String img = mCatalogData.images.get(imagePosition);
+				
+				StorageReference ref = mStorage.getReference("catalog_images").child(mKey).child(img);
+				
+				Glide.with(this).using(new FirebaseImageLoader()).load(ref).into(mImageView);
+			}
 			
-			StorageReference ref = mStorage.getReference("catalog_images").child(mKey).child(img);
 			
-			Glide.with(this).using(new FirebaseImageLoader()).load(ref).into(mImageView);
 		}
 		
 	}
@@ -117,4 +144,5 @@ public class CatalogEntryActivity extends Activity implements OnMapReadyCallback
 		map.addMarker(new MarkerOptions().position(sydney).title("Marker"));
 		map.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 	}
+	
 }
