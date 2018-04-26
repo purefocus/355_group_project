@@ -7,6 +7,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import edu.vcu.cmsc.App;
 import edu.vcu.cmsc.R;
 import edu.vcu.cmsc.ui.catalog.CatalogActivity;
 import edu.vcu.cmsc.ui.chat.ChatThreadList;
@@ -17,14 +21,17 @@ public class WelcomeActivity extends Activity
 	
 	private static final int REQUEST_LOGIN = 1;
 	
-	
+	private FirebaseAuth mAuth;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
 		
-		if(!LoginActivity.LOGGED_IN)
+		mAuth = FirebaseAuth.getInstance();
+		
+		if (!App.isLoggedIn)
 		{
 			Intent intent = new Intent(this, LoginActivity.class);
 			
@@ -36,12 +43,19 @@ public class WelcomeActivity extends Activity
 		
 	}
 	
+	public void onStart()
+	{
+		super.onStart();
+		
+		FirebaseUser user = mAuth.getCurrentUser();
+	}
+	
 	
 	public void onActivityResult(int request, int result, Intent data)
 	{
-		if(request == REQUEST_LOGIN)
+		if (request == REQUEST_LOGIN)
 		{
-			if(result == RESULT_OK)
+			if (result == RESULT_OK)
 			{
 				Toast.makeText(this, "Logged in!", Toast.LENGTH_LONG).show();
 			}
@@ -56,7 +70,7 @@ public class WelcomeActivity extends Activity
 	//menu buttons
 	public void catalogClick(View v)
 	{
-		if (v. getId() == R.id.catalogButton)
+		if (v.getId() == R.id.catalogButton)
 		{
 			Intent i = new Intent(this, CatalogActivity.class);
 			startActivity(i);
@@ -65,7 +79,7 @@ public class WelcomeActivity extends Activity
 	
 	public void calendarClick(View v)
 	{
-		if (v. getId() == R.id.calendarButton)
+		if (v.getId() == R.id.calendarButton)
 		{
 			//Intent i = new Intent(this, calendarMain.class);
 			//startActivity(i);
@@ -74,7 +88,7 @@ public class WelcomeActivity extends Activity
 	
 	public void chatClick(View v)
 	{
-		if (v. getId() == R.id.chatButton)
+		if (v.getId() == R.id.chatButton)
 		{
 			Intent i = new Intent(this, ChatThreadList.class);
 			startActivity(i);
@@ -83,7 +97,7 @@ public class WelcomeActivity extends Activity
 	
 	public void mapClick(View v)
 	{
-		if (v. getId() == R.id.mapButton)
+		if (v.getId() == R.id.mapButton)
 		{
 			Intent i = new Intent(this, MapActivity.class);
 			startActivity(i);
@@ -92,7 +106,7 @@ public class WelcomeActivity extends Activity
 	
 	public void settingsClick(View v)
 	{
-		if (v. getId() == R.id.settingsButton)
+		if (v.getId() == R.id.settingsButton)
 		{
 			Intent i = new Intent(this, SettingsActivity.class);
 			startActivity(i);

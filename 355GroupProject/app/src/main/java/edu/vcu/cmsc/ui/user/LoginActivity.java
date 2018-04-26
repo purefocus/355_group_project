@@ -8,11 +8,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
 
+import edu.vcu.cmsc.App;
 import edu.vcu.cmsc.R;
+import edu.vcu.cmsc.data.UserData;
+import edu.vcu.cmsc.database.tables.LoginTable;
 import edu.vcu.cmsc.ui.WelcomeActivity;
 
 
@@ -20,9 +27,10 @@ public class LoginActivity extends Activity
 {
 	private static final String TAG = "LOGIN";
 	
-	public static boolean LOGGED_IN = false;
 	
 	private AlertDialog popup;
+	
+	private FirebaseAuth mAuth;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -34,6 +42,8 @@ public class LoginActivity extends Activity
 		boolean remember = pref.getBoolean("login.remember", false);
 		((CheckBox) findViewById(R.id.check_login_remember)).setChecked(remember);
 		
+		mAuth = FirebaseAuth.getInstance();
+		
 		if (remember)
 		{
 			String username = pref.getString("login.username", "");
@@ -41,7 +51,7 @@ public class LoginActivity extends Activity
 			
 			((TextView) findViewById(R.id.field_login_username)).setText(username);
 			((TextView) findViewById(R.id.field_login_password)).setText(password);
-			
+
 			login(username, password);
 		}
 		
@@ -55,6 +65,7 @@ public class LoginActivity extends Activity
 	
 	public void btn_login(View view)
 	{
+		
 		String username = ((TextView) findViewById(R.id.field_login_username)).getText().toString();
 		String password = ((TextView) findViewById(R.id.field_login_password)).getText().toString();
 		
@@ -88,48 +99,29 @@ public class LoginActivity extends Activity
 	
 	private void login(String username, String password)
 	{
-		FirebaseFirestore db = FirebaseFirestore.getInstance();
 		
-		db.collection("login")
-		  .whereEqualTo("username", username)
-		  .whereEqualTo("password", password)
-		  .get().addOnCompleteListener(
+		mAuth.signInWithEmailAndPassword(usernameToEmail(username), password).addOnCompleteListener(
 				task ->
 				{
-					boolean exists = false;
-					boolean approved = false;
+					if(popup != null)
+					{
+						popup.dismiss();
+					}
+					enableAll(true);
 					if (task.isSuccessful())
 					{
-						for (DocumentSnapshot doc : task.getResult())
-						{
-							exists = true;
-							approved = doc.getBoolean("approved");
-						}
-						if (popup != null)
-						{
-							popup.dismiss();
-						}
-						enableAll(true);
-						
-						if (!exists)
-						{
-							setPref(username, password, false);
-							onLoginFailure();
-						}
-						else
-						{
-							setPref(username, password, true);
-							if (approved)
-							{
-								onLoginSuccess();
-							}
-							else
-							{
-								onApprovalFailure();
-							}
-						}
+						setPref(username, password, true);
+						onLoginSuccess(username);
+					}
+					else
+					{
+						setPref(username, password, false);
+						onLoginFailure();
+//						Toast.makeText(this, "Invalid email/password", Toast.LENGTH_LONG).show();
 					}
 				});
+
+
 	}
 	
 	private void setPref(String uname, String pass, boolean allowSet)
@@ -152,11 +144,39 @@ public class LoginActivity extends Activity
 		editor.apply();
 	}
 	
-	private void onLoginSuccess()
+	private void onLoginSuccess(String uname)
 	{
 		setResultMessage(" ");
 //		Intent intent = new Intent(this, WelcomeActivity.class);
 //		startActivity(intent);
+		
+		FirebaseFirestore.getInstance().collection("users")
+		                 .whereEqualTo(LoginTable.COL_USERNAME, uname)
+		                 .get().addOnCompleteListener(
+				task ->
+				{
+					if (task.isSuccessful())
+					{
+						for (DocumentSnapshot snap : task.getResult().getDocuments())
+						{
+							App.self = snap.toObject(UserData.class);
+							if(App.self.approved)
+							{
+								onApprovalFailure();
+							}
+							else
+							{
+								App.isLoggedIn = true;
+								finish();
+							}
+						}
+					}
+					else
+					{
+						App.isLoggedIn = false;
+						Toast.makeText(this, "Error logging in?", Toast.LENGTH_LONG).show();
+					}
+				});
 		
 		setResult(RESULT_OK);
 		finish();
@@ -171,6 +191,15 @@ public class LoginActivity extends Activity
 				.setPositiveButton("OK", (d, w) -> d.dismiss())
 				.create()
 				.show();
+	}
+	
+	public static String usernameToEmail(String username)
+	{
+		if(!username.contains("@"))
+		{
+			return username + "@meh.com";
+		}
+		return username;
 	}
 	
 	public void onLoginFailure()

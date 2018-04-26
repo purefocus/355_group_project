@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -123,7 +125,7 @@ public class RegisterActivity extends Activity
 		registerUser(fname, lname, username, email, password);
 		
 	}
-	
+
 //	private void enableAll(boolean en)
 //	{
 //		findViewById(R.id.field_register_fname).setEnabled(en);
@@ -153,23 +155,40 @@ public class RegisterActivity extends Activity
 	
 	private void registerUser(String fname, String lname, String username, String email, String password)
 	{
-		FirebaseFirestore db = FirebaseFirestore.getInstance();
+		FirebaseAuth auth = FirebaseAuth.getInstance();
+		auth.createUserWithEmailAndPassword(LoginActivity.usernameToEmail(username), password)
+		    .addOnCompleteListener(
+				    task ->
+				    {
+					    if (task.isSuccessful())
+					    {
+					    	
+						    FirebaseFirestore db = FirebaseFirestore.getInstance();
+						
+						    Map<String, Object> userData = new HashMap<>();
+						    userData.put("first_name", fname);
+						    userData.put("last_name", lname);
+						    userData.put("email", email);
+						    userData.put("username", username);
+						
+						    db.collection("users").add(userData);
+						    userData.clear();
+						
+						    userData.put("username", username);
+						    userData.put("password", password);
+						    userData.put("approved", false);
+						    db.collection("login").add(userData);
+						
+						    finish();
+					    }
+					    else
+					    {
+						    task.getException().printStackTrace();
+						    Toast.makeText(this, "Account Creation Failed", Toast.LENGTH_LONG)
+						         .show();
+					    }
+				    });
 		
-		Map<String, Object> userData = new HashMap<>();
-		userData.put("first_name", fname);
-		userData.put("last_name", lname);
-		userData.put("email", email);
-		userData.put("username", username);
-		
-		db.collection("users").add(userData);
-		userData.clear();
-		
-		userData.put("username", username);
-		userData.put("password", password);
-		userData.put("approved", false);
-		db.collection("login").add(userData);
-		
-		finish();
 		
 	}
 }

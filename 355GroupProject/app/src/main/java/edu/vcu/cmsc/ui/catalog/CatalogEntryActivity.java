@@ -31,6 +31,8 @@ public class CatalogEntryActivity extends Activity implements OnMapReadyCallback
 	private CatalogEntryData mCatalogData;
 	private FirebaseStorage mStorage;
 	
+	private String mKey;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -38,7 +40,7 @@ public class CatalogEntryActivity extends Activity implements OnMapReadyCallback
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_catalog_entry);
 		
-		String entryKey = getIntent().getStringExtra("entryKey");
+		mKey = getIntent().getStringExtra("entryKey");
 		
 		mImageView = findViewById(R.id.cat_img);
 		
@@ -48,7 +50,7 @@ public class CatalogEntryActivity extends Activity implements OnMapReadyCallback
 		FirebaseFirestore mFirestore = FirebaseFirestore.getInstance();
 		mStorage = FirebaseStorage.getInstance();
 		
-		DocumentReference mEntryRef = mFirestore.collection("catalog").document(entryKey);
+		DocumentReference mEntryRef = mFirestore.collection("catalog").document(mKey);
 		mEntryRef.get().addOnCompleteListener(
 				task ->
 				{
@@ -62,6 +64,16 @@ public class CatalogEntryActivity extends Activity implements OnMapReadyCallback
 					
 					
 					mapFrag.getMapAsync(this);
+					
+					// download all images
+					for(String img : mCatalogData.images)
+					{
+						StorageReference ref = mStorage.getReference("catalog_images").child(mKey)
+						                               .child(img);
+						
+						Glide.with(this).using(new FirebaseImageLoader()).load(ref)
+						     .downloadOnly(mImageView.getWidth(), mImageView.getHeight());
+					}
 				});
 		
 		
@@ -91,7 +103,7 @@ public class CatalogEntryActivity extends Activity implements OnMapReadyCallback
 			
 			String img = mCatalogData.images.get(imagePosition);
 			
-			StorageReference ref = mStorage.getReference("catalog_images").child(img);
+			StorageReference ref = mStorage.getReference("catalog_images").child(mKey).child(img);
 			
 			Glide.with(this).using(new FirebaseImageLoader()).load(ref).into(mImageView);
 		}

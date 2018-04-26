@@ -12,6 +12,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 import edu.vcu.cmsc.R;
+import edu.vcu.cmsc.database.tables.CatalogEntryTable;
 
 public class CatalogActivity extends Activity implements CatalogAdapter.CatalogItemSelectedListener
 {
@@ -33,7 +34,7 @@ public class CatalogActivity extends Activity implements CatalogAdapter.CatalogI
 		mRecyclerView = findViewById(R.id.cat_item_list);
 		
 		mFirestore = FirebaseFirestore.getInstance();
-		mQuery = mFirestore.collection("catalog");
+		mQuery = mFirestore.collection(CatalogEntryTable.TABLE_TITLE);
 		
 		mAdapter = new CatalogAdapter(mQuery, this);
 		

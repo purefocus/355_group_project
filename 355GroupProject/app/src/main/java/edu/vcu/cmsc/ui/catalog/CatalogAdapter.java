@@ -77,6 +77,7 @@ public class CatalogAdapter extends FirestoreAdapter<CatalogAdapter.ViewHolder>
 				
 				FirebaseStorage storage = FirebaseStorage.getInstance();
 				StorageReference ref = storage.getReference("catalog_images")
+				                              .child(snapshop.getId())
 				                              .child(entry.images.get(0));
 				
 				Glide.with(imageView.getContext())
