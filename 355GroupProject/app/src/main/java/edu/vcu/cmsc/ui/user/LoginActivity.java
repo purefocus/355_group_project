@@ -44,7 +44,7 @@ public class LoginActivity extends Activity
 		
 		mAuth = FirebaseAuth.getInstance();
 		
-		if (remember)
+		if (!App.logged_out && remember)
 		{
 			String username = pref.getString("login.username", "");
 			String password = pref.getString("login.password", "");
@@ -53,6 +53,11 @@ public class LoginActivity extends Activity
 			((TextView) findViewById(R.id.field_login_password)).setText(password);
 
 			login(username, password);
+		}
+		else
+		{
+			App.logged_out = true;
+			setPref("", "", false);
 		}
 		
 	}
@@ -68,14 +73,25 @@ public class LoginActivity extends Activity
 		
 		String username = ((TextView) findViewById(R.id.field_login_username)).getText().toString();
 		String password = ((TextView) findViewById(R.id.field_login_password)).getText().toString();
-		
-		login(username, password);
-		enableAll(false);
-		
-		AlertDialog.Builder d = new AlertDialog.Builder(this);
-		d.setMessage("Logging in...");
-		popup = d.create();
-		popup.show();
+		if(username.length() == 0 || password.length() == 0)
+		{
+			if (popup != null)
+			{
+				popup.dismiss();
+			}
+			enableAll(true);
+			setPref(username, password, false);
+		}
+		else
+		{
+			login(username, password);
+			enableAll(false);
+			
+			AlertDialog.Builder d = new AlertDialog.Builder(this);
+			d.setMessage("Logging in...");
+			popup = d.create();
+			popup.show();
+		}
 	}
 	
 	public void btn_register(View view)
@@ -100,28 +116,41 @@ public class LoginActivity extends Activity
 	private void login(String username, String password)
 	{
 		
-		mAuth.signInWithEmailAndPassword(usernameToEmail(username), password).addOnCompleteListener(
-				task ->
-				{
-					if(popup != null)
-					{
-						popup.dismiss();
-					}
-					enableAll(true);
-					if (task.isSuccessful())
-					{
-						setPref(username, password, true);
-						onLoginSuccess(username);
-					}
-					else
-					{
-						setPref(username, password, false);
-						onLoginFailure();
+		if(username == null || username.length() == 0 || password == null || password.length() == 0)
+		{
+			if (popup != null)
+			{
+				popup.dismiss();
+			}
+			enableAll(true);
+			setPref(username, password, false);
+		}
+		else
+		{
+			
+			mAuth.signInWithEmailAndPassword(usernameToEmail(username), password)
+			     .addOnCompleteListener(
+					     task ->
+					     {
+						     if (popup != null)
+						     {
+							     popup.dismiss();
+						     }
+						     enableAll(true);
+						     if (task.isSuccessful())
+						     {
+							     setPref(username, password, true);
+							     onLoginSuccess(username);
+						     }
+						     else
+						     {
+							     setPref(username, password, false);
+							     onLoginFailure();
 //						Toast.makeText(this, "Invalid email/password", Toast.LENGTH_LONG).show();
-					}
-				});
-
-
+						     }
+					     });
+			
+		}
 	}
 	
 	private void setPref(String uname, String pass, boolean allowSet)
@@ -160,30 +189,30 @@ public class LoginActivity extends Activity
 						for (DocumentSnapshot snap : task.getResult().getDocuments())
 						{
 							App.self = snap.toObject(UserData.class);
-							if(App.self.approved)
+							if(App.self.permissions < App.Role.MEMBER.perm)
 							{
 								onApprovalFailure();
 							}
 							else
 							{
-								App.isLoggedIn = true;
+								System.out.println("Permissions: " + App.self.permissions);
+								setResult(RESULT_OK);
 								finish();
 							}
+							break;
 						}
 					}
 					else
 					{
-						App.isLoggedIn = false;
 						Toast.makeText(this, "Error logging in?", Toast.LENGTH_LONG).show();
 					}
 				});
 		
-		setResult(RESULT_OK);
-		finish();
 	}
 	
 	public void onApprovalFailure()
 	{
+		System.out.println("Approval Failure!");
 		setResultMessage("You haven't been approved yet!");
 		new AlertDialog.Builder(this)
 				.setTitle("You have not been approved!")

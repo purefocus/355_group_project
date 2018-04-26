@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import edu.vcu.cmsc.R;
+import edu.vcu.cmsc.data.UserData;
 
 public class RegisterActivity extends Activity
 {
@@ -164,21 +165,30 @@ public class RegisterActivity extends Activity
 					    {
 					    	
 						    FirebaseFirestore db = FirebaseFirestore.getInstance();
+						    UserData user = new UserData();
+						    user.username = username;
+						    user.firstName = fname;
+						    user.lastName = lname;
+						    user.email = email;
+						    user.permissions = 0;
+						    db.collection("users").add(user);
+						    
 						
-						    Map<String, Object> userData = new HashMap<>();
-						    userData.put("first_name", fname);
-						    userData.put("last_name", lname);
-						    userData.put("email", email);
-						    userData.put("username", username);
+//						    Map<String, Object> userData = new HashMap<>();
+//						    userData.put("first_name", fname);
+//						    userData.put("last_name", lname);
+//						    userData.put("email", email);
+//						    userData.put("username", username);
+//						    userData.put(UserData)
 						
-						    db.collection("users").add(userData);
-						    userData.clear();
-						
-						    userData.put("username", username);
-						    userData.put("password", password);
-						    userData.put("approved", false);
-						    db.collection("login").add(userData);
-						
+//						    db.collection("users").add(userData);
+//						    userData.clear();
+//
+//						    userData.put("username", username);
+//						    userData.put("password", password);
+//						    userData.put("approved", false);
+//						    db.collection("login").add(userData);
+//
 						    finish();
 					    }
 					    else

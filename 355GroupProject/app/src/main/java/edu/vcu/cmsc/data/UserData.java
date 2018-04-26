@@ -13,6 +13,7 @@ public class UserData
 	public int permissions;
 	
 	public String username;
+	public String email;
 	
 	public String firstName;
 	public String lastName;

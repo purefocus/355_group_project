@@ -17,16 +17,18 @@ public class App
 	
 	public enum Role
 	{
-		NEW_USER, MEMBER, MODERATOR, ADMINISTRATOR;
+		NEW_USER(0), DENIED(1), MEMBER(2), MODERATOR(3), ADMINISTRATOR(4);
 		
-		Role()
+		public final int perm;
+		
+		Role(int permLevel)
 		{
-		
+			this.perm = permLevel;
 		}
 	}
 	
 	public static UserData self;
-	public static boolean isLoggedIn;
+	public static boolean logged_out;
 	
 	
 }

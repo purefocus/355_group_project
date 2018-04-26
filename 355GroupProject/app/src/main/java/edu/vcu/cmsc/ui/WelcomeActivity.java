@@ -2,6 +2,7 @@ package edu.vcu.cmsc.ui;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,9 +13,12 @@ import com.google.firebase.auth.FirebaseUser;
 
 import edu.vcu.cmsc.App;
 import edu.vcu.cmsc.R;
+import edu.vcu.cmsc.data.UserData;
 import edu.vcu.cmsc.ui.catalog.CatalogActivity;
 import edu.vcu.cmsc.ui.chat.ChatThreadList;
 import edu.vcu.cmsc.ui.user.LoginActivity;
+import edu.vcu.cmsc.ui.user.UserApprovalActivity;
+import edu.vcu.cmsc.ui.user.UserApprovalAdapter;
 
 public class WelcomeActivity extends Activity
 {
@@ -31,12 +35,14 @@ public class WelcomeActivity extends Activity
 		
 		mAuth = FirebaseAuth.getInstance();
 		
-		if (!App.isLoggedIn)
+		if (mAuth.getCurrentUser() == null || App.self == null)
 		{
 			Intent intent = new Intent(this, LoginActivity.class);
 			
 			startActivityForResult(intent, REQUEST_LOGIN);
 		}
+		
+		
 		
 		
 		//notifications loading
@@ -47,7 +53,16 @@ public class WelcomeActivity extends Activity
 	{
 		super.onStart();
 		
-		FirebaseUser user = mAuth.getCurrentUser();
+		if(App.self != null && App.self.permissions > App.Role.MODERATOR.perm)
+		{
+			findViewById(R.id.btn_user_app).setVisibility(View.VISIBLE);
+			findViewById(R.id.btn_user_app).setEnabled(true);
+		}
+		else
+		{
+			findViewById(R.id.btn_user_app).setVisibility(View.INVISIBLE);
+			findViewById(R.id.btn_user_app).setEnabled(false);
+		}
 	}
 	
 	
@@ -111,5 +126,22 @@ public class WelcomeActivity extends Activity
 			Intent i = new Intent(this, SettingsActivity.class);
 			startActivity(i);
 		}
+	}
+	
+	public void btn_approve(View view)
+	{
+		Intent intent = new Intent(this, UserApprovalActivity.class);
+		startActivity(intent);
+	}
+	
+	public void btn_logout(View view)
+	{
+		mAuth.signOut();
+		App.self = null;
+		App.logged_out = true;
+		
+		Intent intent = new Intent(this, LoginActivity.class);
+		startActivityForResult(intent, REQUEST_LOGIN);
+		
 	}
 }
