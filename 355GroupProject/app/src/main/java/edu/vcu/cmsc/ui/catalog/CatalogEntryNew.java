@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.Task;
@@ -18,6 +21,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +41,7 @@ public class CatalogEntryNew extends Activity
 {
 	boolean forSale = false;
 	private List<Uri> imgList;
+	private Uri filePath;
 	
 	private static final int PICK_IMAGE = 1;
 	
@@ -53,6 +58,7 @@ public class CatalogEntryNew extends Activity
 	{
 		forSale = ((CheckBox) view).isChecked();
 	}
+
 	
 	public void btn_upload(View v)
 	{
@@ -77,7 +83,16 @@ public class CatalogEntryNew extends Activity
 			{
 				return;
 			}
-			imgList.add(data.getData());
+			filePath = data.getData();
+			imgList.add(filePath);
+			try {
+				ImageView catImg = findViewById(R.id.cat_img2);
+				Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+				catImg.setImageBitmap(bitmap);
+			}
+			catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -87,9 +102,7 @@ public class CatalogEntryNew extends Activity
 		Context context = getApplicationContext();
 		CharSequence message = "Successfully made a new catalog entry.";
 		int duration = Toast.LENGTH_SHORT;
-		
-		//if (v.getId() == R.id.btn_upload_pic) {
-		//}
+
 		
 		
 		if (v.getId() == R.id.btn_make_catalog_entry)
@@ -97,15 +110,32 @@ public class CatalogEntryNew extends Activity
 			EditText titleField = (EditText) findViewById(R.id.field_artifact_title);
 			EditText descriptionField = (EditText) findViewById(R.id.field_artifact_description);
 			EditText priceField = (EditText) findViewById(R.id.field_artifact_price);
+			EditText coordinatesField = (EditText) findViewById(R.id.field_coordinates);
+
 			String price = priceField.getText().toString();
-			
-			
 			String title = titleField.getText().toString();
 			String description = descriptionField.getText().toString();
-			
-			if (TextUtils.isEmpty(title) || TextUtils.isEmpty(description))
+			String coordinates = coordinatesField.getText().toString();
+			String searchCoordinates = ", ";
+
+			if ( coordinates.contains(searchCoordinates) == false ) {
+
+				CharSequence emptyField = "Incorrect format. Example location is 37.5466151, -77.4532558";
+				final Toast toastBasic = Toast.makeText(context, emptyField, Toast.LENGTH_SHORT);
+				toastBasic.show();
+				correctInput = false;
+			}
+
+			String[] coordinateParts = coordinates.split(", ", 2);
+			String latString = coordinateParts[0];
+			String lonString = coordinateParts[1];
+			float lat = Float.parseFloat(latString);
+			float lon = Float.parseFloat(lonString);
+
+
+			if (TextUtils.isEmpty(title) || TextUtils.isEmpty(description) || TextUtils.isEmpty(coordinates))
 			{
-				CharSequence emptyField = "Error: Title or description field cannot be empty";
+				CharSequence emptyField = "Error: Title, description, or coordinates fields cannot be empty";
 				final Toast toastBasic = Toast.makeText(context, emptyField, Toast.LENGTH_SHORT);
 				toastBasic.show();
 				correctInput = false;
@@ -121,6 +151,7 @@ public class CatalogEntryNew extends Activity
 			
 			if (correctInput)
 			{
+
 				CatalogEntryData c = new CatalogEntryData();
 				c.title = title;
 				c.description = description;

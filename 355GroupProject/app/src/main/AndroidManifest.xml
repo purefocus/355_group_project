@@ -39,6 +39,7 @@
         <activity android:name=".ui.chat.ChatThreadList">
         </activity>
         <activity android:name=".ui.SettingsActivity"/>
+        <activity android:name=".ui.ChangePass"/>
         <activity android:name=".ui.MapActivity"/>
         <activity android:name=".ui.user.UserApprovalActivity">
         </activity>
