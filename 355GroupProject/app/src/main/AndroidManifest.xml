@@ -43,6 +43,9 @@
         <activity android:name=".ui.MapActivity"/>
         <activity android:name=".ui.user.UserApprovalActivity">
         </activity>
+        <activity android:name=".ui.chat.ThreadPostActivity">
+
+        </activity>
     </application>
 
 </manifest>
