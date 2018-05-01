@@ -12,6 +12,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 import edu.vcu.cmsc.R;
+import edu.vcu.cmsc.data.ChatPostData;
 import edu.vcu.cmsc.database.tables.CatalogEntryTable;
 import edu.vcu.cmsc.database.tables.ThreadTable;
 import edu.vcu.cmsc.ui.BaseActivity;
@@ -92,8 +93,14 @@ public class ChatThreadList extends BaseActivity implements ThreadAdapter.OnThre
 	@Override
 	public void onThreadClicked(DocumentSnapshot item)
 	{
+
+		ChatPostData data = item.toObject(ChatPostData.class);
+
 		Intent intent = new Intent(this, ThreadPostActivity.class);
 		intent.putExtra("entryKey", item.getId());
+		intent.putExtra("author", data.author);
+		intent.putExtra("time", data.time);
+		intent.putExtra("message", data.message);
 		
 		startActivity(intent);
 	}
