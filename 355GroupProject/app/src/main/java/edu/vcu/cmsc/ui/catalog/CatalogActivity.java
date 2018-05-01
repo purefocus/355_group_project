@@ -13,8 +13,9 @@ import com.google.firebase.firestore.Query;
 
 import edu.vcu.cmsc.R;
 import edu.vcu.cmsc.database.tables.CatalogEntryTable;
+import edu.vcu.cmsc.ui.BaseActivity;
 
-public class CatalogActivity extends Activity implements CatalogAdapter.CatalogItemSelectedListener
+public class CatalogActivity extends BaseActivity implements CatalogAdapter.CatalogItemSelectedListener
 {
 	
 	RecyclerView mRecyclerView;
@@ -29,7 +30,7 @@ public class CatalogActivity extends Activity implements CatalogAdapter.CatalogI
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_catalog);
+//		setContentView(R.layout.activity_catalog);
 		
 		mRecyclerView = findViewById(R.id.cat_item_list);
 		
@@ -51,6 +52,12 @@ public class CatalogActivity extends Activity implements CatalogAdapter.CatalogI
 		{
 			mAdapter.startListening();
 		}
+	}
+	
+	@Override
+	public int getContentLayout()
+	{
+		return R.layout.activity_catalog;
 	}
 	
 	@Override

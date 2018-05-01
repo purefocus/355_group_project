@@ -22,9 +22,10 @@ import com.google.firebase.storage.StorageReference;
 
 import edu.vcu.cmsc.R;
 import edu.vcu.cmsc.data.CatalogEntryData;
+import edu.vcu.cmsc.ui.BaseActivity;
 import edu.vcu.cmsc.ui.chat.ThreadFragment;
 
-public class CatalogEntryActivity extends FragmentActivity implements OnMapReadyCallback
+public class CatalogEntryActivity extends BaseActivity implements OnMapReadyCallback
 {
 	
 	private int imagePosition;
@@ -43,7 +44,7 @@ public class CatalogEntryActivity extends FragmentActivity implements OnMapReady
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_catalog_entry);
+//		setContentView(R.layout.activity_catalog_entry);
 		
 		mKey = getIntent().getStringExtra("entryKey");
 		
@@ -66,7 +67,9 @@ public class CatalogEntryActivity extends FragmentActivity implements OnMapReady
 				{
 					mCatalogData = task.getResult().toObject(CatalogEntryData.class);
 					
-					((TextView) findViewById(R.id.cat_title)).setText(mCatalogData.title);
+					mActionBar.setTitle(mCatalogData.title);
+					((TextView) findViewById(R.id.cat_title)).setVisibility(View.GONE);
+							                                         //setText(mCatalogData.title);
 					((TextView) findViewById(R.id.cat_description))
 							.setText(mCatalogData.description);
 					
@@ -87,6 +90,12 @@ public class CatalogEntryActivity extends FragmentActivity implements OnMapReady
 				});
 		
 		
+	}
+	
+	@Override
+	public int getContentLayout()
+	{
+		return R.layout.activity_catalog_entry;
 	}
 	
 	public void btn_img(View view)

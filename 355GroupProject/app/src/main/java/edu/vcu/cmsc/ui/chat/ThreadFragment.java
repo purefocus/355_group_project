@@ -112,7 +112,6 @@ public class ThreadFragment extends Fragment implements View.OnClickListener
 	@Override
 	public void onClick(View v)
 	{
-		System.out.println("btn_thread_reply");
 		String msg = mCommentView.getText().toString().trim();
 		if (msg.length() > 1)
 		{

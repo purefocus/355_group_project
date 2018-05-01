@@ -14,8 +14,9 @@ import java.util.Map;
 import edu.vcu.cmsc.App;
 import edu.vcu.cmsc.R;
 import edu.vcu.cmsc.database.tables.UserTable;
+import edu.vcu.cmsc.ui.BaseActivity;
 
-public class UserApprovalActivity extends AppCompatActivity implements UserApprovalAdapter.UserButtonListener
+public class UserApprovalActivity extends BaseActivity implements UserApprovalAdapter.UserButtonListener
 {
 	
 	RecyclerView mRecyclerView;
@@ -30,7 +31,7 @@ public class UserApprovalActivity extends AppCompatActivity implements UserAppro
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_user_approval);
+//		setContentView(R.layout.activity_user_approval);
 		
 		mRecyclerView = findViewById(R.id.user_approval_list);
 		
@@ -52,6 +53,12 @@ public class UserApprovalActivity extends AppCompatActivity implements UserAppro
 		{
 			mAdapter.startListening();
 		}
+	}
+	
+	@Override
+	public int getContentLayout()
+	{
+		return R.layout.activity_user_approval;
 	}
 	
 	@Override

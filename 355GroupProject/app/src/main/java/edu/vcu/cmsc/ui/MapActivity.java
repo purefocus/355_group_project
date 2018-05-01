@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import edu.vcu.cmsc.R;
 
-public class MapActivity extends Activity
+public class MapActivity extends BaseActivity
 {
 
     @Override
@@ -15,5 +15,11 @@ public class MapActivity extends Activity
 
         //notifications loading
 
+    }
+    
+    @Override
+    public int getContentLayout()
+    {
+        return R.layout.activity_map;
     }
 }

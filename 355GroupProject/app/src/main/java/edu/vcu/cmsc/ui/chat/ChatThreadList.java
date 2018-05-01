@@ -14,6 +14,7 @@ import com.google.firebase.firestore.Query;
 import edu.vcu.cmsc.R;
 import edu.vcu.cmsc.database.tables.CatalogEntryTable;
 import edu.vcu.cmsc.database.tables.ThreadTable;
+import edu.vcu.cmsc.ui.BaseActivity;
 import edu.vcu.cmsc.ui.catalog.CatalogAdapter;
 import edu.vcu.cmsc.ui.catalog.CatalogEntryActivity;
 
@@ -21,7 +22,7 @@ import edu.vcu.cmsc.ui.catalog.CatalogEntryActivity;
  * Created by Christine on 4/25/2018.
  */
 
-public class ChatThreadList extends Activity implements ThreadAdapter.OnThreadClickedListener
+public class ChatThreadList extends BaseActivity implements ThreadAdapter.OnThreadClickedListener
 {
 	
 	RecyclerView mRecyclerView;
@@ -36,7 +37,7 @@ public class ChatThreadList extends Activity implements ThreadAdapter.OnThreadCl
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_chat_thread_list);
+//		setContentView(R.layout.activity_chat_thread_list);
 		
 		mRecyclerView = findViewById(R.id.list_threads);
 		
@@ -58,6 +59,12 @@ public class ChatThreadList extends Activity implements ThreadAdapter.OnThreadCl
 		{
 			mAdapter.startListening();
 		}
+	}
+	
+	@Override
+	public int getContentLayout()
+	{
+		return R.layout.activity_chat_thread_list;
 	}
 	
 	@Override
