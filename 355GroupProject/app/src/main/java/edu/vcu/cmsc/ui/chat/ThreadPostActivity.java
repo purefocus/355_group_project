@@ -23,7 +23,7 @@ public class ThreadPostActivity extends BaseActivity
 		super.onCreate(savedInstanceState);
 
 
-		setContentView(R.layout.activity_thread_post);
+//		setContentView(R.layout.activity_thread_post);
 
 		String author = getIntent().getStringExtra("author");
 
